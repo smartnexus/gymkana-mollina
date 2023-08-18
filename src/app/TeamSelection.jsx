@@ -9,21 +9,34 @@ export const TeamSelection = ({ id, scene }) => {
 
     const db = useContext(DbContext);
     const [promise, setPromise] = useState()
-    const [request, setRequest] = useState()
     const [team, setTeam] = useState()
-    const [err, setErr] = useState()
-
-    useEffect(() => {
-        setRequest(suspensify(getTeams(db)))
-    }, [db])
     
     const locationDone = promise ? promise.read() : undefined;
-    const teamList = request ? request.read() : undefined;
+
+    const handleTeamSelection = (teamId) => {
+        setPromise(suspensify(checkLocation(db, teamId, scene, id)))
+        setTeam(teamId)
+    }
+
+    return(locationDone === undefined ?
+        <TeamsForm teamCallback={handleTeamSelection}/> : <Result trigger={locationDone} id={id} team={team}/>
+    )
+}
+
+const TeamsForm = ({ teamCallback }) => {
+    const db = useContext(DbContext);
+    const [promise, setPromise] = useState()
+    const [err, setErr] = useState()
+
+    const teamList = promise ? promise.read() : undefined;
+
+    useEffect(() => {
+        setPromise(suspensify(getTeams(db)))
+    }, [db])
 
     const checkAnswer = (typed) => {
         if (Object.keys(teamList).includes(typed)) {
-            setPromise(suspensify(checkLocation(db, typed, scene, id)))
-            setTeam(typed)
+            teamCallback(typed)
         } else 
             setErr('⚠️ Equipo no encontrado')
     }
@@ -44,7 +57,6 @@ export const TeamSelection = ({ id, scene }) => {
     }
 
     return(teamList !== undefined &&
-        (locationDone === undefined ?
         <div className="team-obj">
             <h3>Antes de empezar...</h3>
             <p>Necesitamos que introduzcas el número de tu equipo para guardar vuestro progreso en el juego.</p> 
@@ -56,7 +68,7 @@ export const TeamSelection = ({ id, scene }) => {
             {err && <div className="error-box">
                 <p>{err}</p>
             </div>}
-        </div> : <Result trigger={locationDone} id={id} team={team}/>)
+        </div> 
     )
 }
 
