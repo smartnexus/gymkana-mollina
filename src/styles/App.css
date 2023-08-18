@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   font-family: Albert Sans;
+  max-width: 500px;
+  margin: auto;
 }
 
 .App-logo {
