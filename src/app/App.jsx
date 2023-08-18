@@ -15,7 +15,7 @@ import { firebaseConfig } from '../config/firebase';
 
 import { LoadingSpinner } from './Loading';
 import { Success } from "./Success";
-import { TeamSelection } from "./TeamSelection";
+import { Scene } from "./Scene";
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
@@ -29,7 +29,7 @@ const App = () => {
 						<div className="main-container">
 							<Router>
 								<Routes>
-									<Route path={`/location/:id`} Component={TeamSelection}/>
+									<Route path={`/location/:id`} Component={Scene}/>
 									<Route path={`/success`} Component={Success}/>
 								</Routes>
 							</Router>

@@ -8,8 +8,8 @@ export const getLocation = async (db, locationId) => {
     return snapshot.val()
 }
 
-export const checkLocation = async (db, teamId, locationId) => {
-    const snapshot = await get(child(ref(db), `progress/${teamId}/${locationId}`)).catch(err => {
+export const checkLocation = async (db, teamId, sceneId, locationId) => {
+    const snapshot = await get(child(ref(db), `progress/${teamId}/${sceneId}/${locationId}`)).catch(err => {
         console.error(err)
     });
     
