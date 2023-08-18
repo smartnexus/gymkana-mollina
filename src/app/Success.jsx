@@ -15,12 +15,14 @@ export const Success = () => {
         setEnd(true)
     }
 
+    const valid = state?.team && state?.scene && state?.hint && state?.next; 
+
     useEffect(() => {
         if(end)
             suspensify(deleteCurrentScene(db, state?.team, state?.scene))
     }, [db, end, state])
 
-    return(<>
+    return(valid && <>
         <div className="success-obj">
             <h3>¡Enhorabuena!</h3>
             <p>Has conseguido acertar el acertijo de la localización.</p> 
@@ -28,10 +30,10 @@ export const Success = () => {
             <hr/>
             <div className="input-wrapper shrink" style={{marginTop: 0}}>
                 <p>Pista obtenida en esta localización:</p>
-                <input value={state?.hint} disabled></input>
+                <input value={state?.hint} readOnly></input>
                 {!end && <>
                     <p>Siguiente localización:</p>
-                    <input value={state?.next} disabled></input>
+                    <input value={state?.next} readOnly></input>
                 </>}
             </div>
             {end && <>

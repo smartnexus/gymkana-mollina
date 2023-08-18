@@ -47,7 +47,6 @@ export const Footer = ({ teamId, sceneId, endCallback = () => {} }) => {
                     </div>
                     <ProgressBar step={step}/>
                 </>
-                
             }
         </div>
     )
