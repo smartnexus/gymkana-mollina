@@ -72,11 +72,19 @@ const TeamsForm = ({ teamCallback }) => {
     )
 }
 
-const Result = ({ trigger, id, team }) => {
-    return(
-        !trigger ? <Location id={id} team={team}/> : <div>
-            <h3>Este equipo ya ha realizado esta prueba</h3>
-            <p>Recuerda que tenéis que ir a la siguiente localización que aparecía en el mensaje que salió al acertar la pregunta.</p>
-        </div>
-    )
-}
+const Result = ({ trigger, id, team }) => (
+    /* Team has not completed this location */
+    trigger?.available ? (
+        /* Location scene and team current scene are the same */
+        trigger?.sceneMatch ? 
+            <Location id={id} team={team}/> :
+            <div>
+                <h3>Esta localización no se encuentra desbloqueada aún</h3>
+                <p>Recuerda que tenéis que completar todas las localizaciones de una escena para desbloquear las demas.</p>
+            </div>
+        ) : 
+    <div>
+        <h3>Este equipo ya ha realizado esta prueba</h3>
+        <p>Recuerda que tenéis que ir a la siguiente localización que aparecía en el mensaje que salió al acertar la pregunta.</p>
+    </div>
+)

@@ -9,11 +9,19 @@ export const getLocation = async (db, locationId) => {
 }
 
 export const checkLocation = async (db, teamId, sceneId, locationId) => {
-    const snapshot = await get(child(ref(db), `progress/${teamId}/${sceneId}/${locationId}`)).catch(err => {
+    const snapshot = await get(child(ref(db), `progress/${teamId}`)).catch(err => {
         console.error(err)
     });
-    
-    return snapshot.val()
+    const value = snapshot.val()
+
+    /* True if team has done already this location */
+    const passedLoc = value?.[sceneId]?.[locationId]; 
+    let sceneMatch = true;
+    const current = value?.current;
+    if (current !== undefined && current !== sceneId)
+       sceneMatch = false; 
+
+    return { available: !passedLoc, sceneMatch }
 }
 
 export const getTeams = async (db) => {

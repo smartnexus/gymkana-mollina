@@ -3,7 +3,7 @@ import { ref, update } from "firebase/database";
 export const updateTeam = async (db, teamId, sceneId, locationId) => {
     const res = await update(ref(db, `/progress/${teamId}`), {
         [`/${sceneId}/${locationId}`]: true,
-        [`currentScene`]: sceneId,
+        [`current`]: sceneId,
     }).catch(err => {
         console.error(err)
     });
@@ -13,7 +13,7 @@ export const updateTeam = async (db, teamId, sceneId, locationId) => {
 
 export const deleteCurrentScene = async (db, teamId, sceneId) => {
     const res = await update(ref(db, `/progress/${teamId}`), {
-        [`currentScene`]: null,
+        [`current`]: null,
     }).catch(err => {
         console.error(err)
     });
