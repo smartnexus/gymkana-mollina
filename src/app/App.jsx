@@ -24,7 +24,7 @@ const db = getDatabase(app);
 
 const Index = () => {
 	const navigate = useNavigate()
-	const [visible, setVisible] = useState(true)
+	const [visible, setVisible] = useState(false)
 
 	const handleFooter = () => setVisible(!visible)
 

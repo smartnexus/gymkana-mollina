@@ -65,7 +65,7 @@
 .team-box {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .footer {
@@ -245,6 +245,34 @@ div.progress-container {
   border: 3px solid var(--line-border-empty);
   transition: .4s ease;
   font-family: 'AlbertSans-Black';
+}
+
+.live-circle {
+  border: 4px solid var(--line-border-empty);;
+  background: #fff;
+  color: #222222;
+  border-radius: 0;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'AlbertSans-Black';
+  font-size: 1.25em;
+}
+@keyframes infinite-blink-color {
+  0%, 100% {
+      border-color: #ffc107;
+  }
+  50% {
+      border-color: var(--line-border-empty);;
+  }
+}
+.live-circle.active {
+  border-color: var(--line-border-fill)!important;
+}
+.live-circle.current {
+  animation: infinite-blink-color 1s infinite;
 }
 
 .circle.active {
