@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Footer } from "./Footer";
+import { suspensify } from "../utils";
+import { deleteCurrentScene } from "../actions/write";
+import { DbContext } from "../contexts/DbContext";
 
 export const Success = () => {
-
     const { state } = useLocation()
+
+    const db = useContext(DbContext)
     const [end, setEnd] = useState(false)
 
     const hideNextLoc = () => {
         setEnd(true)
     }
+
+    useEffect(() => {
+        if(end)
+            suspensify(deleteCurrentScene(db, state?.team, state?.scene))
+    }, [db, end, state])
 
     return(<>
         <div className="success-obj">
