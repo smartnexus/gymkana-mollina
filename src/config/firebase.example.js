@@ -8,3 +8,5 @@ export const firebaseConfig = {
 	appId: "APP_ID",
 	databaseURL: "DATABASE_URL"
 };
+
+export const providerKey = "PUBLIC_KEY";

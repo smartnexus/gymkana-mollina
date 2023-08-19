@@ -6,7 +6,7 @@
 			"**/.*",
 			"**/node_modules/**"
 		],
-		"site": "mollina-gymkana",
+		"site": "gymkana-mollina",
 		"rewrites": [
 			{
 				"source": "**",

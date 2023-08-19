@@ -10,9 +10,10 @@ import '../styles/App.css';
 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 import { DbContextProvider } from "../contexts/DbContext"
-import { firebaseConfig } from '../config/firebase';
+import { firebaseConfig, providerKey } from '../config/firebase';
 
 import { LoadingSpinner } from './Loading';
 import { Success } from "./Success";
@@ -20,6 +21,10 @@ import { Scene } from "./Scene";
 import { Live } from "./Live";
 
 const app = initializeApp(firebaseConfig);
+initializeAppCheck(app, {
+	provider: new ReCaptchaV3Provider(providerKey),
+	isTokenAutoRefreshEnabled: true
+});
 const db = getDatabase(app);
 
 const Index = () => {
