@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "locations": {
+      ".read": true,
+      ".write": false
+    },
+    "teams": {
+      ".read": true,
+      ".write": false
+    },
+    "progress": {
+      ".read": true,
+      ".write": true
+    },  
+    ".read": false,
+    ".write": false
+  }
+}
