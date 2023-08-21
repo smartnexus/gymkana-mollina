@@ -1,0 +1,48 @@
+{
+	"locations": {
+		"2f6c8c53": {
+			"answer": "Cohete",
+			"hint": "Despegue",
+			"name": "Sótano de Sid",
+			"next": "Cuarto de Andy",
+			"question": "¿Qué es lo que Sid le ata a Buzz LightYear a la espalda?",
+			"scene": "s1"
+		},
+		"d0f07ad7": {
+			"answer": "Azul",
+			"hint": "Coche",
+			"name": "Cuarto de Andy",
+			"next": "Pizza Planet",
+			"question": "¿De qué color está pintado el cuarto de Andy?",
+			"scene": "s1"
+		},
+		"fbe75c86": {
+			"answer": "Gancho",
+			"hint": "Maleta",
+			"name": "Pizza Planet",
+			"next": "Sótano de Sid",
+			"question": "¿De que sitio consigue llevarse Sid a Buddy y Buzz LightYear?",
+			"scene": "s1"
+		}
+	},
+	"progress": {
+		"382": {
+			"s1": {
+				"2f6c8c53": true,
+				"d0f07ad7": true,
+				"fbe75c86": true
+			}
+		},
+		"569": {
+			"current": "s1",
+			"s1": {
+				"2f6c8c53": true
+			}
+		}
+	},
+	"teams": {
+		"382": "Equipo 2",
+		"401": "Equipo 3",
+		"569": "Equipo 1"
+	}
+  }
