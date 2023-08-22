@@ -33,8 +33,8 @@ export const Location = ({ id, team }) => {
                 <CustomInput answer={loc.answer} successCallback={listener}/>
             </>:
             <>
-                <h3>Esta localización no existe</h3>
-                <p>Si esto es un error, ponte en contacto con los organizadores del evento</p>
+                <h3>Ha ocurrido un error con esta localización</h3>
+                <p>Por favor ponte en contacto con los organizadores del evento</p>
             </>}
         </div>
         <div className="footer">

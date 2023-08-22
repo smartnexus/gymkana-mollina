@@ -89,7 +89,7 @@ const Result = ({ trigger, id, team }) => (
             <Location id={id} team={team}/> :
             <div>
                 <h3>Esta localización no se encuentra desbloqueada aún</h3>
-                <p>Recuerda que tenéis que completar todas las localizaciones de una escena para desbloquear las demas.</p>
+                <p>Recuerda que tenéis que completar todas las localizaciones de una escena para desbloquear las demás.</p>
             </div>
         ) : 
     <div>
