@@ -4,6 +4,7 @@ import { DbContext } from "../contexts/DbContext";
 import { useState } from "react";
 import { suspensify } from "../utils";
 import { checkLocation, getTeams } from "../actions/read";
+import { Variables } from "../config/const";
 
 export const TeamSelection = ({ id, scene }) => {
 
@@ -19,16 +20,17 @@ export const TeamSelection = ({ id, scene }) => {
     }
 
     return(locationDone === undefined ?
-        <TeamsForm teamCallback={handleTeamSelection}/> : <Result trigger={locationDone} id={id} team={team}/>
+        <TeamsForm id={id} teamCallback={handleTeamSelection}/> : <Result trigger={locationDone} id={id} team={team}/>
     )
 }
 
-const TeamsForm = ({ teamCallback }) => {
+const TeamsForm = ({ id, teamCallback }) => {
     const db = useContext(DbContext);
     const [promise, setPromise] = useState()
     const [err, setErr] = useState()
 
     const teamList = promise ? promise.read() : undefined;
+    const [staffTeam] = teamList ? Object.keys(teamList).filter(o => teamList[o] === Variables.staffTeam) : [null];
 
     useEffect(() => {
         setPromise(suspensify(getTeams(db)))
@@ -36,7 +38,14 @@ const TeamsForm = ({ teamCallback }) => {
 
     const checkAnswer = (typed) => {
         if (Object.keys(teamList).includes(typed)) {
-            teamCallback(typed)
+            if (id === Variables.demoLocationId) {
+                if (typed === staffTeam)
+                    teamCallback(typed)
+                else
+                    setErr('⚠️ Esta prueba no esta disponible para este equipo')
+            } else {
+                teamCallback(typed)
+            }                 
         } else 
             setErr('⚠️ Equipo no encontrado')
     }

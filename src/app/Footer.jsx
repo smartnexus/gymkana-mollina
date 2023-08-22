@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { DbContext } from "../contexts/DbContext";
 import { suspensify } from "../utils";
 import { getLocations } from "../actions/read";
+import { Variables } from "../config/const";
 
 const sceneMap = (id) => {
     switch (id) {
@@ -13,6 +14,8 @@ const sceneMap = (id) => {
             return 'Escena 3';
         case 's4':
             return 'Escena 4';
+        case Variables.demoLocationId:
+            return 'Escena Demo'
         default:
             return 'Escena inválida';
     }
@@ -36,7 +39,7 @@ export const Footer = ({ teamId, sceneId, endCallback = () => {} }) => {
 
     return(
         <div className="footer-body">
-            { (sceneId !== 's1' && sceneId !== 's2' && sceneId !== 's3' && sceneId !== 's4') ?
+            { (sceneId !== 's1' && sceneId !== 's2' && sceneId !== 's3' && sceneId !== 's4' && sceneId !== Variables.demoLocationId) ?
                 <div className="footer-text">
                     <p>⚠️ Error al obtener la escena</p>
                 </div>:
