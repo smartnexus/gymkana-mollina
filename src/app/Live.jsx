@@ -36,7 +36,7 @@ export const Live = () => {
                 <div className='status-circle' style={{backgroundColor: online?'#92c353':'gray'}}/>
                 <span>&nbsp;{online?'En línea':'Conectando...'}</span>
             </div>
-            {data?.length > 0 ? data.list.sort().map((o,i) => (
+            {data?.list.length > 0 ? data.list.sort().map((o,i) => (
                 <div className="team-box" key={i}>
                     <p>E-{o}</p>
                     <ProgressBar stepInfo={data.content[o]}/>
