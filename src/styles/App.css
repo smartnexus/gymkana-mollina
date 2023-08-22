@@ -68,12 +68,18 @@
   justify-content: space-around;
 }
 
-.footer {
+.footer-wrapper {
   position: fixed;
   bottom: 0;
-  margin: 0 1.8em;
   left: 0;
   width: -webkit-fill-available;
+  margin: 0 1.8rem;
+}
+
+.footer {
+  margin: 0 auto;
+  width: -webkit-fill-available;
+  max-width: 500px;
   background: #f2f2f2;
   border-radius: 10px 10px 0px 0px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -102,7 +108,7 @@ div.show {
 }
 
 .live {
-  transform: translateY(15vh);
+  transform: translateY(20vh);
   transition: transform .5s ease-out;
 }
 

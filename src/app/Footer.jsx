@@ -38,19 +38,23 @@ export const Footer = ({ teamId, sceneId, endCallback = () => {} }) => {
     }, [step, endCallback])
 
     return(
-        <div className="footer-body">
-            { (sceneId !== 's1' && sceneId !== 's2' && sceneId !== 's3' && sceneId !== 's4' && sceneId !== Variables.demoLocationId) ?
-                <div className="footer-text">
-                    <p>⚠️ Error al obtener la escena</p>
-                </div>:
-                <>
-                    <div className="footer-text">
-                        <p><b>Progreso</b></p>
-                        <p>{sceneMap(sceneId)}</p>
-                    </div>
-                    <ProgressBar step={step}/>
-                </>
-            }
+        <div className="footer-wrapper">
+            <div className="footer">
+                <div className="footer-body">
+                    { (sceneId !== 's1' && sceneId !== 's2' && sceneId !== 's3' && sceneId !== 's4' && sceneId !== Variables.demoLocationId) ?
+                        <div className="footer-text">
+                            <p>⚠️ Error al obtener la escena</p>
+                        </div>:
+                        <>
+                            <div className="footer-text">
+                                <p><b>Progreso</b></p>
+                                <p>{sceneMap(sceneId)}</p>
+                            </div>
+                            <ProgressBar step={step}/>
+                        </>
+                    }
+                </div>
+            </div>
         </div>
     )
 }

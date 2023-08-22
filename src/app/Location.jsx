@@ -37,9 +37,7 @@ export const Location = ({ id, team }) => {
                 <p>Por favor ponte en contacto con los organizadores del evento</p>
             </>}
         </div>
-        <div className="footer">
-            <Footer teamId={team} sceneId={loc?.scene}/>
-        </div></>
+        <Footer teamId={team} sceneId={loc?.scene}/></>
     )
 }
 

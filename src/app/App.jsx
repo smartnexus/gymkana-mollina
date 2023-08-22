@@ -36,12 +36,14 @@ const Index = () => {
 	return (<div>
 		<img src="/logo192.png" alt="center" onDoubleClick={handleFooter}/>
 		<p>Hecho con ❤️ por el equipo de dinamización de la orquesta 🎻</p>
-		<div className={`footer live${visible?' show':''}`}>
-			<div className="footer-body" style={{flexDirection: 'column'}}>
-				<div className="footer-text">
-					<p style={{fontSize: '1.5rem'}}>📊 Panel de progreso</p>
+		<div className="footer-wrapper">
+			<div className={`footer live${visible?' show':''}`}>
+				<div className="footer-body" style={{flexDirection: 'column'}}>
+					<div className="footer-text">
+						<p style={{fontSize: '1.5rem'}}>📊 Panel de progreso</p>
+					</div>
+					<button className="live-button" onClick={() => navigate('/live', {state: { admin: true }})}>Ver en directo</button>
 				</div>
-				<button className="live-button" onClick={() => navigate('/live', {state: { admin: true }})}>Ver en directo</button>
 			</div>
 		</div>
 	</div>

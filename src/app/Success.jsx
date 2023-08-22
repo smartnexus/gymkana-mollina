@@ -51,7 +51,6 @@ const SucessContent = ({ valid, state, hideNextLoc, end }) => (
             <p>Ya has terminado las localizaciones de esta escena, vuelve al <u>punto de inicio</u> para adivinar qué escena es.</p>
         </>}
     </div>
-    <div className="footer">
-        <Footer teamId={state?.team} sceneId={state?.scene} endCallback={hideNextLoc}/>
-    </div></> : null
+    <Footer teamId={state?.team} sceneId={state?.scene} endCallback={hideNextLoc}/>
+    </> : null
 )
