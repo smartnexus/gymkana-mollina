@@ -12,6 +12,10 @@
       ".read": true,
       ".write": true
     },  
+    "enabled": {
+      ".read": true,
+      ".write": false
+    },
     ".read": false,
     ".write": false
   }

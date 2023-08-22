@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { Navigate, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import { mountProgressListener } from "../actions/listen"
 import { DbContext } from "../contexts/DbContext"
 
@@ -42,7 +42,7 @@ export const Live = () => {
                     <ProgressBar stepInfo={data.content[o]}/>
                 </div>
             )): <p>Todavía no hay equipos que hayan comenzado el juego.</p>}
-        </div> : <Navigate to="/" replace={true}/>
+        </div> : null
     )
 }
 

@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { suspensify } from "../utils";
 import { getLocation } from "../actions/read";
 import { TeamSelection } from "./TeamSelection";
+import { StatusWrapper } from "./StatusWrapper";
 
 export const Scene = () => {
     const { id } = useParams();
@@ -18,15 +19,17 @@ export const Scene = () => {
     const location = promise ? promise.read() : undefined;
 
     return(
-        /* Loading state */
-        location !== undefined && ( 
-            /* Location exists */
-            location !== null ? (
-                /* Location has valid info */ 
-                location?.scene ? 
-                <TeamSelection scene={location?.scene} id={id}/>:<InvalidLocation/>
-            ):<NotFound/>
-        ) 
+        <StatusWrapper>
+            {/* Loading state */
+            location !== undefined && ( 
+                /* Location exists */
+                location !== null ? (
+                    /* Location has valid info */ 
+                    location?.scene ? 
+                    <TeamSelection scene={location?.scene} id={id}/>:<InvalidLocation/>
+                ):<NotFound/>
+            )}
+        </StatusWrapper>
     )
 }
 
