@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
-import { mountListener } from "../actions/listen"
+import { Navigate, useLocation } from "react-router-dom"
+import { mountProgressListener } from "../actions/listen"
 import { DbContext } from "../contexts/DbContext"
 
 export const Live = () => {
@@ -12,34 +12,37 @@ export const Live = () => {
     })
 
     useEffect(() => {
-        const obs = mountListener(db, content => {
-            setOnline(true)
-            setData({
-                list: Object.keys(content),
-                content
-            })
-        });
+        let obs = () => {}
+        if(state?.admin) {
+            obs = mountProgressListener(db, content => {
+                setOnline(true)
+                setData({
+                    list: content ? Object.keys(content) : [],
+                    content
+                })
+            });
+        } 
 
         return () => {
             obs()
             setOnline(false)
         }
-    }, [db, setData, setOnline])
+    }, [db, setData, setOnline, state])
 
-    return ( state?.admin &&
+    return (state?.admin ?
         <div className="live-obj">
             <h3 className={`${online?'blinking':''}`}>Progreso en directo</h3>
             <div className={`live-box ${online?'':'blinking'}`}>
                 <div className='status-circle' style={{backgroundColor: online?'#92c353':'gray'}}/>
                 <span>&nbsp;{online?'En línea':'Conectando...'}</span>
             </div>
-            {data.list.sort().map((o,i) => (
+            {data?.length > 0 ? data.list.sort().map((o,i) => (
                 <div className="team-box" key={i}>
                     <p>E-{o}</p>
                     <ProgressBar stepInfo={data.content[o]}/>
                 </div>
-            ))}
-        </div>
+            )): <p>Todavía no hay equipos que hayan comenzado el juego.</p>}
+        </div> : <Navigate to="/" replace={true}/>
     )
 }
 

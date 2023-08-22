@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router-dom";
 import { Footer } from "./Footer";
 import { suspensify } from "../utils";
 import { deleteCurrentScene } from "../actions/write";
@@ -22,7 +22,7 @@ export const Success = () => {
             suspensify(deleteCurrentScene(db, state?.team, state?.scene))
     }, [db, end, state])
 
-    return(valid && <>
+    return(valid ? <>
         <div className="success-obj">
             <h3>¡Enhorabuena!</h3>
             <p>Has conseguido acertar el acertijo de la localización.</p> 
@@ -43,6 +43,6 @@ export const Success = () => {
         </div>
         <div className="footer">
             <Footer teamId={state?.team} sceneId={state?.scene} endCallback={hideNextLoc}/>
-        </div></>
+        </div></> : <Navigate to="/" replace={true}/>
     )
 }
