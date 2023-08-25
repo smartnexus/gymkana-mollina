@@ -4,6 +4,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.lds-text {
+  margin: 0.7rem;
+  font-size: 1rem;
+  animation: show 2s linear 5s;
+  animation: hide 5s linear 0s;
+  max-width: 325px;
+  color: #f2f2f2;
+}
+
 .lds-grid {
   display: inline-block;
   position: relative;
