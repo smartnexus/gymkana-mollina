@@ -26,6 +26,21 @@
   max-width: 100%;
 }
 
+.header-container {
+  position: fixed;
+  top: 0;
+}
+
+.header-container p {
+  margin: 0;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  background: #f2f2f2;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  color: #222222;
+}
+
 .blinking {
   animation: infinite-blink 2s infinite;
 }

@@ -13,11 +13,12 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "scripts": {
+    "tag": "git --no-pager log -1 --format=format:%h > build/version.txt",
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm ci && npm run build && firebase deploy"
+    "deploy": "npm ci && npm run build && npm run tag && firebase deploy"
   },
   "eslintConfig": {
     "extends": [

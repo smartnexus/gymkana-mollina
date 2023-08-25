@@ -20,6 +20,7 @@ import { Success } from "./Success";
 import { Scene } from "./Scene";
 import { Live } from "./Live";
 import { connectionHandler } from "../utils";
+import { Header } from "./Header";
 
 const app = initializeApp(firebaseConfig);
 initializeAppCheck(app, {
@@ -66,6 +67,9 @@ const App = () => {
 	return (
 		<div className="App">
 			<div className="App-body">
+				<div className="header-container">
+					<Header/>
+				</div>
 				<Suspense fallback={<LoadingSpinner/>}>
 					<DbContextProvider value={db} status={connected}>
 						<div className="main-container">
