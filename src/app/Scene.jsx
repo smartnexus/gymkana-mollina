@@ -10,7 +10,7 @@ import { Variables } from "../config/const";
 export const Scene = () => {
     const { id } = useParams();
 
-    const db = useContext(DbContext);
+    const [db] = useContext(DbContext);
     const [promise, setPromise] = useState();
 
     useEffect(() => {

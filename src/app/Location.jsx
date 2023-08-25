@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { Footer } from "./Footer";
 
 export const Location = ({ id, team }) => {
-    const db = useContext(DbContext);
+    const [db] = useContext(DbContext);
     const [promise, setPromise] = useState()
     const navigate = useNavigate()
 

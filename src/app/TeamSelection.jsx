@@ -8,7 +8,7 @@ import { Variables } from "../config/const";
 
 export const TeamSelection = ({ id, scene }) => {
 
-    const db = useContext(DbContext);
+    const [db] = useContext(DbContext);
     const [promise, setPromise] = useState()
     const [team, setTeam] = useState()
     
@@ -25,7 +25,7 @@ export const TeamSelection = ({ id, scene }) => {
 }
 
 const TeamsForm = ({ id, teamCallback }) => {
-    const db = useContext(DbContext);
+    const [db] = useContext(DbContext);
     const [promise, setPromise] = useState()
     const [err, setErr] = useState()
 

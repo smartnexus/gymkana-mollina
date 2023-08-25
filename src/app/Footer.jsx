@@ -22,7 +22,7 @@ const sceneMap = (id) => {
 }
 
 export const Footer = ({ teamId, sceneId, endCallback = () => {} }) => {
-    const db = useContext(DbContext);
+    const [db] = useContext(DbContext);
     const [promise, setPromise] = useState()
 
     const progress = promise ? promise.read() : undefined
