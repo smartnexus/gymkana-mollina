@@ -10,7 +10,7 @@ import { Variables } from "../config/const";
 export const Success = () => {
     const { state } = useLocation()
 
-    const db = useContext(DbContext)
+    const [db] = useContext(DbContext)
     const [end, setEnd] = useState(false)
 
     const hideNextLoc = () => {
