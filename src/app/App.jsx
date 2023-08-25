@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -9,7 +9,7 @@ import {
 import '../styles/App.css';
 
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { forceLongPolling, getDatabase } from "firebase/database";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 import { DbContextProvider } from "../contexts/DbContext"
@@ -19,6 +19,7 @@ import { LoadingSpinner } from './Loading';
 import { Success } from "./Success";
 import { Scene } from "./Scene";
 import { Live } from "./Live";
+import { connectionHandler } from "../utils";
 
 const app = initializeApp(firebaseConfig);
 initializeAppCheck(app, {
@@ -51,11 +52,22 @@ const Index = () => {
 }
 
 const App = () => {
+	const [connected, setConnected] = useState(true)
+	const handler = () => connectionHandler(db, setConnected)
+
+	useEffect(() => {
+		forceLongPolling()
+		document.addEventListener("visibilitychange", handler);
+		return () => {
+			document.removeEventListener('visibilitychange', handler)
+		}
+	}, [])
+
 	return (
 		<div className="App">
 			<div className="App-body">
 				<Suspense fallback={<LoadingSpinner/>}>
-					<DbContextProvider value={db}>
+					<DbContextProvider value={db} status={connected}>
 						<div className="main-container">
 							<Router>
 								<Routes>

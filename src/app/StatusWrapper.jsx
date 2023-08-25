@@ -1,29 +1,40 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { mountStatusListener } from "../actions/listen"
 import { DbContext } from "../contexts/DbContext"
 
 export const StatusWrapper = ({ children }) => {
-    const db = useContext(DbContext)
+    const [db, status] = useContext(DbContext)
     const [online, setOnline] = useState(undefined)
+    let obs = useRef(() => {})
 
     useEffect(() => {
-        const obs = mountStatusListener(db, content => {
-            setOnline(content)
-        });
+        if(!status) {
+            setOnline(status)
+            obs.current()
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [status])
+
+    useEffect(() => {
+        if (status) {
+            obs.current = mountStatusListener(db, content => {
+                setOnline(content)
+            }, () => setOnline(undefined));
+        }
 
         return () => {
-            obs()
+            obs.current()
             setOnline(undefined)
         }
-    }, [db])
+    }, [db, status])
 
     return(
         /* online state */
         online !== undefined && ( 
             /* online true-false */
             online ? children : <div>
-                <h3>El juego ha sido deshabilitado</h3>
-                <p>Por favor vuelve al <u>punto de inicio</u> para continuar.</p>
+                <h3 className="blinking">El juego ha sido pausado</h3>
+                <p>Por favor vuelve al <u>punto de inicio</u> para recibir las instrucciones de los organizadores del juego.</p>
             </div>
         )
     )

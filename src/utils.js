@@ -1,3 +1,17 @@
+import { goOffline, goOnline } from "firebase/database"
+
+export const connectionHandler = (db, setConnected) => {
+	if (document.visibilityState === "visible") {
+		console.warn('Launching connection...')
+		goOnline(db)
+		setConnected(true)
+	} else {
+		console.warn('Disconnecting from server...')
+		goOffline(db)
+		setConnected(false)
+	}
+}
+
 export const isEmpty = (obj = {}) => {
 	return Object.keys(obj).length === 0
 }
