@@ -1,4 +1,5 @@
 export const Variables = {
     staffTeam: 'Staff',
-    demoLocationId: 'demo'
+    demoLocationId: 'demo',
+    cooldown: 120
 }

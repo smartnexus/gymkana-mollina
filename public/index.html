@@ -16,5 +16,21 @@
   <body style="background-color: #222222;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      function isScreenLockSupported() {
+        return ('wakeLock' in navigator);
+      }
+      async function getScreenLock() {
+        if(isScreenLockSupported()){
+          let screenLock;
+          try {
+            screenLock = await navigator.wakeLock.request('screen');
+          } catch(err) {
+            console.log(err.name, err.message);
+          }
+          return screenLock;
+        }
+      }
+      </script>
   </body>
 </html>

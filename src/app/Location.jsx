@@ -6,6 +6,7 @@ import { updateTeam } from "../actions/write"
 import { suspensify } from "../utils";
 import { useNavigate } from "react-router";
 import { Footer } from "./Footer";
+import { Variables } from "../config/const";
 
 export const Location = ({ id, team }) => {
     const [db] = useContext(DbContext);
@@ -91,7 +92,7 @@ const StopWatch = ({ helperCallback }) => {
     useEffect(() => {
         let intervalId;
         intervalId = setInterval(() => setTime(time + 1), 1000);
-        if(time === 180)
+        if(time === Variables.cooldown)
             helperCallback()
         return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps

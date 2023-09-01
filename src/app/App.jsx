@@ -55,13 +55,13 @@ const Index = () => {
 const App = () => {
 	const [connected, setConnected] = useState(true)
 	const handler = () => connectionHandler(db, setConnected)
-
 	useEffect(() => {
 		forceLongPolling()
 		document.addEventListener("visibilitychange", handler);
 		return () => {
 			document.removeEventListener('visibilitychange', handler)
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
