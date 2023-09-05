@@ -68,8 +68,8 @@ const CustomInput = ({ answer = '', successCallback, helperCallback }) => {
 
     const placeholder = (answer) => {
         if(answer.includes(' ')) {
-            const [f,s] = answer.split(' ');
-            return `2 palabras (${f.length}+${s.length})`
+            const array = answer.split(' ');
+            return `${array.length} palabras (${array.map(o => o.length).join('+')})`
         } else {
             return `${answer.length} letras`
         }
